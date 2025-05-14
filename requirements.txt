@@ -11,3 +11,4 @@ python-dateutil>=2.8.2
 bcrypt>=3.2.0
 pydantic-extra-types>=2.0.0
 aiosqlite>=0.17.0
+mercadopago>=2.0.0

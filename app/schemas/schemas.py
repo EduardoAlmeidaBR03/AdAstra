@@ -124,6 +124,12 @@ class ReservaResponse(BaseModel):
     valor_total: Decimal
     assento: Optional[str] = None
 
+    # Validador para garantir que o campo assento não seja retornado como null quando estiver vazio
+    @validator('assento')
+    def assento_not_null(cls, v):
+        # Se o valor for None, retorna uma string vazia em vez de null
+        return v or ""
+
     class Config:
         orm_mode = True
 
