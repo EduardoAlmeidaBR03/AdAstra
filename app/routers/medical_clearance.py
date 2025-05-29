@@ -86,18 +86,8 @@ def atualizar_status_medico(cliente, aprovado, db):
     if aprovado:
         cliente.status_medico = models.StatusMedico.APROVADO
     else:
-        # Verificar se existe alguma aprovação médica anterior que foi aprovada
-        aprovacao_anterior = db.query(models.AprovacaoMedica).filter(
-            models.AprovacaoMedica.cliente_id == cliente.id,
-            models.AprovacaoMedica.aprovado == True
-        ).order_by(desc(models.AprovacaoMedica.data_verificacao)).first()
-        
-        if aprovacao_anterior:
-            # Se tiver uma aprovação anterior, manter o status de acordo com ela
-            cliente.status_medico = models.StatusMedico.APROVADO
-        else:
-            # Quando a aprovação médica é false, o status deve ser PENDENTE
-            cliente.status_medico = models.StatusMedico.PENDENTE
+        # Quando a aprovação médica é false, o status deve ser REPROVADO
+        cliente.status_medico = models.StatusMedico.REPROVADO
 
 # Nova rota para atualizar apenas o status de aprovação médica
 @router.patch("/{medical_clearance_id}/status", response_model=schemas.AprovacaoMedicaResponse)
