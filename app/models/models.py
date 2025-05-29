@@ -17,7 +17,10 @@ class CertificacaoStatus(str, enum.Enum):
 
 class TipoPacote(str, enum.Enum):
     SUBORBITAL = "Suborbital"
+    ORBITAL = "Orbital"
     ESTACAO_ESPACIAL = "Estação Espacial"
+    LUNAR = "Lunar"
+    INTERPLANETARIO = "Interplanetário"
 
 class StatusReserva(str, enum.Enum):
     RESERVADO = "Reservado"
